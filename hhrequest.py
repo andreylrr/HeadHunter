@@ -10,6 +10,7 @@ class HHRequest():
     def __init__(self, hhparser):
         self._s_search_pattern = ""
         self._l_ignore_terms = []
+        self._l_double_terms = []
         self._s_url = ""
         self._l_urls_vacancies = []
         self._o_parser = hhparser
@@ -48,5 +49,13 @@ class HHRequest():
     def process_url(self, url: str) -> list:
         return self._o_parser.parse(req.get(url).json())
 
-    def load_ignore_terms(self, file_name: str) -> None:
+    def load_help_files(self, file_ignore: str, file_double: str) -> None:
+        with open(file_ignore,"r") as f:
+            for ignore_term in f:
+                self._l_ignore_terms.append(ignore_term)
+
+        with open(file_double, "r") as f:
+            for double_term in f:
+                self._l_double_terms.append(double_term)
+
         pass

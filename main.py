@@ -13,7 +13,7 @@ s_search = 'java developer'
 
 o_pars_description = hp.HHParserDescription()
 o_pars_key_skills = hk.HHParserKeySkills()
-o_hhrequest = hr.HHRequest(o_pars_key_skills)
+o_hhrequest = hr.HHRequest(o_pars_description)
 
 o_hhrequest.set_url(s_url)
 o_hhrequest.set_search_pattern(s_search)

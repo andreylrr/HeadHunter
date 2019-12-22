@@ -47,3 +47,6 @@ class HHParserDescription():
 
 if __name__ == '__main__':
     pass
+
+
+# TODO Добавить очистку от мусора и проверку на двойное название
