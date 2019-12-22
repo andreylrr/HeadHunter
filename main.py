@@ -1,11 +1,20 @@
 import hhrequest as hr
+import hhparserdescription as hp
 import pickle as pic
+import requests as re
+import pprint as pp
+import hhparserdescription as hp
+import hhparser_key_skills as hk
 
 d_terms_dictionary = dict()
 s_url = 'https://api.hh.ru/vacancies'
 s_search = 'java developer'
 
-o_hhrequest = hr.HHRequest()
+
+o_pars_description = hp.HHParserDescription()
+o_pars_key_skills = hk.HHParserKeySkills()
+o_hhrequest = hr.HHRequest(o_pars_key_skills)
+
 o_hhrequest.set_url(s_url)
 o_hhrequest.set_search_pattern(s_search)
 

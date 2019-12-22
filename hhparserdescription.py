@@ -1,17 +1,18 @@
 import re
+import json
 #
-#   HHParser класс предназначен для обработки описаний вакансий полученных с сайта hh.ru
+#   HHParserDescription класс предназначен для обработки описаний вакансий полученных с сайта hh.ru
 #   В каждом описании вакансии парсер определяет какие технологии были востребованы и
 #   возвращает их список
 #
 
-class HHParser():
+class HHParserDescription():
     def __init__(self):
         self._l_found_technology = []
         self._s_description = ""
 
-    def parse(self, job_description: str) -> list:
-        self._s_description = job_description
+    def parse(self, vacancy: json) -> list:
+        self._s_description = vacancy['description']
         self._clean_trash()
         self._clean_html()
         self._find_technology()

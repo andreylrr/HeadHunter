@@ -1,5 +1,5 @@
 import unittest
-import hhparser
+import hhparserdescription
 
 s_test = "<p><strong>Middle Java Developer на проект разработки платформы  BPS(bpsuite.com).</strong></p> <p>Компания <strong>Astarus</strong> \
  занимается разработкой ПО, основным направлением компании является \
@@ -35,7 +35,7 @@ s_test = "<p><strong>Middle Java Developer на проект разработк�
 
 class HHParser_TestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.hh_parser = hhparser.HHParser()
+        self.hh_parser = hhparserdescription.HHParserDescription()
         self.hh_parser._s_description = s_test
 
     def test_clean_html(self):

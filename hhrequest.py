@@ -1,5 +1,5 @@
 import requests as req
-import hhparser as hp
+
 """
      Класс HHRequest осуществляет обращение к сайту hh.ru с помощью api  
      для поиска вакансий по указанной тематики и обрабатывает 
@@ -7,12 +7,12 @@ import hhparser as hp
 """
 
 class HHRequest():
-    def __init__(self):
+    def __init__(self, hhparser):
         self._s_search_pattern = ""
         self._l_ignore_terms = []
         self._s_url = ""
         self._l_urls_vacancies = []
-        self._o_parser = hp.HHParser()
+        self._o_parser = hhparser
 
     def set_search_pattern(self, pattern: str) -> None:
         self._s_search_pattern = pattern
@@ -46,8 +46,7 @@ class HHRequest():
         return self._l_urls_vacancies
 
     def process_url(self, url: str) -> list:
-        j_result = req.get(url).json()
-        return self._o_parser.parse(j_result['description'])
+        return self._o_parser.parse(req.get(url).json())
 
     def load_ignore_terms(self, file_name: str) -> None:
         pass
