@@ -19,6 +19,7 @@ o_hhrequest.set_url(s_url)
 o_hhrequest.set_search_pattern(s_search)
 
 l_urls = o_hhrequest.get_urls_vacancies()
+i_number_vacancies = 0
 for s_url in l_urls:
     l_terms = o_hhrequest.process_url(s_url)
     print(s_url)
@@ -27,6 +28,8 @@ for s_url in l_urls:
             d_terms_dictionary[s_term] += 1
         else:
             d_terms_dictionary[s_term] = 1
+    i_number_vacancies += 1
+print(f'Всего вакансий: {i_number_vacancies}')
 
 print(sorted(d_terms_dictionary.items(), key=lambda x: x[1], reverse=True))
 

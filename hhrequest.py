@@ -32,6 +32,7 @@ class HHRequest():
         while True:
             j_params = {'text': self._s_search_pattern,
                         'page': i_page_number,
+                        'area.name': 'Москва',
                         'per_page': 100
             }
 
@@ -58,4 +59,6 @@ class HHRequest():
             for double_term in f:
                 self._l_double_terms.append(double_term)
 
-        pass
+
+# TODO Добавить обработку ошибок после get запроса
+# TODO Перевести открытие вспомогательных файлов в HHParseDescription
