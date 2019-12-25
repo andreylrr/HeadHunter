@@ -14,9 +14,23 @@ Big Data
 Unit Testing
 MS SQL Server
 Ruby On Rails
-.NET Framework
+NET Framework
 Intellij IDEA
 Apache Kafka
 Java 8
 Java Core
 REST API
+C Objective
+NET Core
+Google Apps
+Google Components
+Python 3
+Python 2
+Google Cloud
+Entity Framework
+Android Framework
+Full Stack
+Objective C
+Frontend Angular
+Virtual Reality
+Internet Things

@@ -14,6 +14,7 @@ class HHRequest():
         self._s_url = ""
         self._l_urls_vacancies = []
         self._o_parser = hhparser
+        self.i_region_id = 0
 
     def set_search_pattern(self, pattern: str) -> None:
         self._s_search_pattern = pattern
@@ -21,22 +22,42 @@ class HHRequest():
     def set_url(self, url: str) -> None:
         self._s_url = url
 
+    def set_region(self, name: str) ->None:
+        j_params = {'text': name }
+        j_result = req.get('https://api.hh.ru/suggests/areas', params=j_params).json()
+        if j_result["items"]:
+            self.i_region_id = j_result["items"][0]["id"]
+        else:
+            raise ValueError("Регион не найден.")
+
+    def set_parser(self, hhparser):
+        self._o_parser = hhparser
+
     def get_urls_vacancies(self) -> list:
+
         if not self._s_url:
             raise ValueError('Не задан адрес сайта.')
 
         if not self._s_search_pattern:
             raise ValueError('Не заданы критерии поиска.')
 
+        if self.i_region_id == 0:
+            raise ValueError('Не задан регион поиска.')
+
+        self._s_url = self._s_url.replace('#', self.i_region_id)
+        self._l_urls_vacancies.clear()
+
         i_page_number = 1
         while True:
             j_params = {'text': self._s_search_pattern,
                         'page': i_page_number,
-                        'area.name': 'Москва',
                         'per_page': 100
             }
 
             j_result = req.get(self._s_url, params=j_params).json()
+
+            if not j_result['items']:
+                break
 
             for j_item in j_result['items']:
                 self._l_urls_vacancies.append(j_item['url'])
@@ -45,20 +66,12 @@ class HHRequest():
                 break
             else:
                 i_page_number += 1
+
         return self._l_urls_vacancies
 
     def process_url(self, url: str) -> list:
         return self._o_parser.parse(req.get(url).json())
 
-    def load_help_files(self, file_ignore: str, file_double: str) -> None:
-        with open(file_ignore,"r") as f:
-            for ignore_term in f:
-                self._l_ignore_terms.append(ignore_term)
-
-        with open(file_double, "r") as f:
-            for double_term in f:
-                self._l_double_terms.append(double_term)
-
 
 # TODO Добавить обработку ошибок после get запроса
-# TODO Перевести открытие вспомогательных файлов в HHParseDescription
+
