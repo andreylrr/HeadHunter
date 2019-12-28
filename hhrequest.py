@@ -47,7 +47,7 @@ class HHRequest():
         self._s_url = self._s_url.replace('#', self.i_region_id)
         self._l_urls_vacancies.clear()
 
-        i_page_number = 1
+        i_page_number = 0
         while True:
             j_params = {'text': self._s_search_pattern,
                         'page': i_page_number,
@@ -72,6 +72,4 @@ class HHRequest():
     def process_url(self, url: str) -> list:
         return self._o_parser.parse(req.get(url).json())
 
-
-# TODO Добавить обработку ошибок после get запроса
 

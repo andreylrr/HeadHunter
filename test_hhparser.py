@@ -1,5 +1,5 @@
 import unittest
-import hhparserdescription
+import hhparser_description
 
 j_test = {'accept_handicapped': False,
  'accept_incomplete_resumes': False,
@@ -386,7 +386,7 @@ j_test = {'accept_handicapped': False,
 
 class HHParser_TestCase(unittest.TestCase):
     def setUp(self) -> None:
-        self.hh_parser = hhparserdescription.HHParserDescription()
+        self.hh_parser = hhparser_description.HHParserDescription()
         self.hh_parser._s_description = j_test['description']
 
     def test_clean_html(self):

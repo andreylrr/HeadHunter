@@ -18,7 +18,7 @@ class HHParserKeySkills():
             self._find_technology()
         else:
             self._l_found_technology = []
-        return self._l_found_technology
+        return list(set(self._l_found_technology))
 
     def _find_technology(self) -> None:
         """
@@ -27,8 +27,6 @@ class HHParserKeySkills():
         """
         for tec_dic in self._l_skills:
             self._l_found_technology.append(tec_dic["name"])
-
-
 
 if __name__ == '__main__':
     pass
