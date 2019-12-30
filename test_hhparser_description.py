@@ -384,7 +384,7 @@ j_test = {'accept_handicapped': False,
  'vacancy_constructor_template': None}
 
 
-class HHParser_TestCase(unittest.TestCase):
+class HHParserDecription_TestCase(unittest.TestCase):
     def setUp(self) -> None:
         self.hh_parser = hhparser_description.HHParserDescription()
         self.hh_parser._s_description = j_test['description']
@@ -397,7 +397,7 @@ class HHParser_TestCase(unittest.TestCase):
     def test_clean_trash(self):
         self.hh_parser._clean_html()
         self.hh_parser._clean_trash()
-        self.assertEqual(1536, len(self.hh_parser._s_description))
+        self.assertEqual(1597, len(self.hh_parser._s_description))
 
     def test_find_technology(self):
         self.hh_parser._clean_html()

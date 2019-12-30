@@ -1,4 +1,3 @@
-import re
 import json
 #
 #   HHParserKeySkills класс предназначен для обработки описаний вакансий полученных с сайта hh.ru
@@ -9,7 +8,6 @@ import json
 class HHParserKeySkills():
     def __init__(self):
         self._l_found_technology = []
-        self._s_description = ""
 
     def parse(self, vacancy: json) -> list:
         self._l_found_technology = []
