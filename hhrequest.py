@@ -54,8 +54,12 @@ class HHRequest():
                         'per_page': 100
             }
 
-            j_result = req.get(self._s_url, params=j_params).json()
+            j_result = req.get(self._s_url, params=j_params)
 
+            if j_result.status_code != 200:
+                return []
+
+            j_result = j_result.json()
             if not j_result['items']:
                 break
 

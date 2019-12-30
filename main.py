@@ -127,23 +127,26 @@ if __name__ == '__main__':
     print("Получаем список вакансий...")
     l_urls = o_hhrequest.get_urls_vacancies()
 
-    print("Запускаем обработку списка для парсера описаний.")
-    d_terms_dictionary.clear()
-    d_description = process_vacancies()
+    if not l_urls:
+        print("По Вашему запросу вакансий не найдено")
+    else:
+        print("Запускаем обработку списка для парсера описаний.")
+        d_terms_dictionary.clear()
+        d_description = process_vacancies()
 
-    print("Запускаем обработку списка для парсера ключевых навыков.")
-    d_terms_dictionary.clear()
-    o_hhrequest.set_parser(o_pars_key_skills)
-    d_key_skills = process_vacancies()
+        print("Запускаем обработку списка для парсера ключевых навыков.")
+        d_terms_dictionary.clear()
+        o_hhrequest.set_parser(o_pars_key_skills)
+        d_key_skills = process_vacancies()
 
-    print("Запускаем обработку списка для парсера зарплат.")
-    d_salary = process_salaries()
+        print("Запускаем обработку списка для парсера зарплат.")
+        d_salary = process_salaries()
 
-    if input("Сохранить результаты поиска Y/N?") == "Y":
-        file_name = "".join(s_search)+"-"+time.strftime("%Y%m%d%H%M", time.localtime())
-        with open(file_name+"-Description", "w") as f:
-            json.dump(d_description, f)
-        with open(file_name+"-KeySkills", "w") as f:
-            json.dump(d_key_skills, f)
-        with open(file_name+"-Salary", "w") as f:
-            json.dump(d_salary, f)
+        if input("Сохранить результаты поиска Y/N?") == "Y":
+            file_name = "".join(s_search)+"-"+time.strftime("%Y%m%d%H%M", time.localtime())
+            with open(file_name+"-Description", "w") as f:
+                json.dump(d_description, f)
+            with open(file_name+"-KeySkills", "w") as f:
+                json.dump(d_key_skills, f)
+            with open(file_name+"-Salary", "w") as f:
+                json.dump(d_salary, f)
