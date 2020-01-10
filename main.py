@@ -32,11 +32,13 @@ def process_vacancies():
         sys.stdout.write(f"Завершена обработка вакансии {i_number_vacancies}")
 
     print(f'\nВсего вакансий: {i_number_vacancies}\n')
-    d_sorted = sorted(d_terms_dictionary.items(), key=lambda x: x[1], reverse=True)
+    d_sorted = dict(sorted(d_terms_dictionary.items(), key=lambda x: x[1], reverse=True))
+    for key, value in d_sorted.items():
+        d_sorted[key] = round((value/i_number_vacancies)*100,2)
 
     print("10 самых популярных технологий")
-    for kye, value in d_sorted[:10]:
-        print(f'{kye} : {round((value/i_number_vacancies)*100, 2)} %')
+    for kye, value in list(d_sorted.items())[:10]:
+        print(f'{kye} : [{value}%]')
     print("\n")
 
     return d_sorted
